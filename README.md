@@ -1,2 +1,4 @@
 # zenbuWrappeR
-R function wrapping zenbu command-line tools
+R functions wrapping [Zenbu][] command-line tools.
+
+[Zenbu]: http://fantom.gsc.riken.jp/zenbu
