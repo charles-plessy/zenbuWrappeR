@@ -26,6 +26,7 @@ Wrapper to the zenbu_upload command-line tool of Zenbu
 \dontrun{
 zenbuUpload("-collabs")
 }
+
 }
 \seealso{
 safeZupload
