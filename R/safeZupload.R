@@ -37,5 +37,5 @@ safeZupload <- function (file, name, assembly, desc, ...) {
                , "-name",        name
                , "-assembly",    assembly
                , "-desc",        desc
-               , stdout="")
+               , ...)
 }
