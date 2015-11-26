@@ -15,6 +15,8 @@
 #' \dontrun{
 #' zenbuUpload("-collabs")
 #' }
+#' 
+#' @export
 
 zenbuUpload <- function ( ...
                         , URL="http://fantom.gsc.riken.jp/zenbu"

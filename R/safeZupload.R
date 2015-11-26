@@ -22,6 +22,8 @@
 #' @importFrom magrittr "%>%"
 #' 
 #' @seealso zenbuUpload
+#' 
+#' @export
 
 safeZupload <- function (file, name, assembly, desc, ...) {
   
