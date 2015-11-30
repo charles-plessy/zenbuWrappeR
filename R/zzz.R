@@ -1,7 +1,9 @@
-#' zenbuWrappR
+#' zzz
 #' 
 #' Before a R function provided by this package is run, it will
 #' test if the program `zenbu_upload` is in the system PATH.
+#' 
+#' @rdname zzz
 
 .onAttach <- function(libname, packagename)
   if (system("which zenbu_upload", ignore.stdout = TRUE) != 0)
