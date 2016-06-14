@@ -28,7 +28,4 @@ zenbuUpload("-collabs")
 }
 
 }
-\seealso{
-safeZupload
-}
 
