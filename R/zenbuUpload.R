@@ -9,8 +9,6 @@
 #' @param echo Echo in shell the arguments passed (default: FALSE).
 #' @param stdout Passed to the `system2` command.
 #' 
-#' @seealso safeZupload
-#' 
 #' @examples
 #' \dontrun{
 #' zenbuUpload("-collabs")
