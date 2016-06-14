@@ -16,10 +16,10 @@
 #' @export
 
 zenbuUpload <- function ( ...
-                        , URL="http://fantom.gsc.riken.jp/zenbu"
-                        , verbose=FALSE
-                        , echo=FALSE
-                        , stdout=TRUE) {
+                        , URL     = "http://fantom.gsc.riken.jp/zenbu"
+                        , verbose = FALSE
+                        , echo    = FALSE
+                        , stdout  = TRUE) {
   zenbu <- 'zenbu_upload'
   url <- c('-url', URL)
   args <- sapply(c(url, ...), shQuote)
