@@ -3,10 +3,9 @@
 #' Wrapper to the zenbu_upload command-line tool of Zenbu
 #' 
 #' @param ... passed to the shell command directly
-#' @param URL URL to the Zenbu browser
-#'        (default: http://fantom.gsc.riken.jp/zenbu).
-#' @param verbose Print in R the shell command (default: FALSE).
-#' @param echo Echo in shell the arguments passed (default: FALSE).
+#' @param URL URL to the Zenbu browser.
+#' @param verbose Print in R the shell command.
+#' @param echo Echo in shell the arguments passed.
 #' @param stdout Passed to the `system2` command.
 #' 
 #' @examples

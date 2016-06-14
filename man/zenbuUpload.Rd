@@ -10,12 +10,11 @@ zenbuUpload(..., URL = "http://fantom.gsc.riken.jp/zenbu", verbose = FALSE,
 \arguments{
 \item{...}{passed to the shell command directly}
 
-\item{URL}{URL to the Zenbu browser
-(default: http://fantom.gsc.riken.jp/zenbu).}
+\item{URL}{URL to the Zenbu browser.}
 
-\item{verbose}{Print in R the shell command (default: FALSE).}
+\item{verbose}{Print in R the shell command.}
 
-\item{echo}{Echo in shell the arguments passed (default: FALSE).}
+\item{echo}{Echo in shell the arguments passed.}
 
 \item{stdout}{Passed to the `system2` command.}
 }
