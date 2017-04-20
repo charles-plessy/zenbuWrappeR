@@ -10,4 +10,3 @@
 Before a R function provided by this package is run, it will
 test if the program `zenbu_upload` is in the system PATH.
 }
-
