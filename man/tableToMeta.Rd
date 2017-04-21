@@ -11,12 +11,17 @@ tableToMeta(df)
 and each row corresponds to one file to be uploaded (sorted
 in the appropriate order).}
 }
+\value{
+Returns a character vector of key-value pairs in \dQuote{pseudo-GFF} format (
+like \dQuote{key1=value1;key2=value2}), with one element per line in the input
+data frame, that will be coerced to characters before being used to build the
+pseudo-GFF string.
+}
 \description{
 Outputs a metadata field in pseudo-GFF format for the
 \code{zenbu_upload} command-line utility.
 }
 \examples{
-colnames(airquality)
-tableToMeta(head(airquality))
+tableToMeta(data.frame(numbers=1:3, booleans=c(T, T, F), characters=c("a", "b", "c")))
 
 }

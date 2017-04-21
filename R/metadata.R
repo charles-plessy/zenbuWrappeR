@@ -48,11 +48,22 @@ mkMetaTable <- function(Keys) {
 #'           and each row corresponds to one file to be uploaded (sorted
 #'           in the appropriate order).
 #' 
+#' @return 
+#' Returns a character vector of key-value pairs in \dQuote{pseudo-GFF} format (
+#' like \dQuote{key1=value1;key2=value2}), with one element per line in the input
+#' data frame, that will be coerced to characters before being used to build the
+#' pseudo-GFF string.
+#' 
 #' @examples 
-#' colnames(airquality)
-#' tableToMeta(head(airquality))
+#' tableToMeta(data.frame(numbers=1:3, booleans=c(T, T, F), characters=c("a", "b", "c")))
 #' 
 #' @export tableToMeta
 
-tableToMeta <- function(df)
-  apply(df, 1, function(X) paste(colnames(df), X, sep="=", collapse = ";"))
+tableToMeta <- function(df) {
+  # http://stackoverflow.com/questions/2851015/convert-data-frame-columns-from-factors-to-characters
+  df[] <- lapply(df, as.character) # Othersise, TRUE can become " TRUE" with unwanted space, etc.
+  apply(df, 1, function(X) paste( colnames(df)
+                                  , as.character(X)
+                                  , sep="="
+                                  , collapse = ";"))
+}
