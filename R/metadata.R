@@ -1,40 +1,71 @@
-#' mkSampleDescription
-#'
-#' @return a function that gives a description to a ....
-
-sampleDescription <- Vectorize(
-  function(sample)
-    paste(sample, Moirai_DIR(sample), "Timecourse", "knitrUpload")
-)
-
-#' tagMetaTable
+#' mdKeyToControl
 #'
 #' Function to create a metadata control file for \code{zenbu_upload}.
 #' 
 #' Note that for the initial tagging, it is recommented to pass the metadata
 #' with the file upload in pseuto-GFF format.
 #' 
-#' @param Key A colum name, to be used as source for metadata.
 #' @param Samples A data frame describing the samples, in which the column
-#'        \dquote{Rownames} exists.
+#'        \dQuote{Description} exists.
+#' @param Key A column name in the \dQuote{Samples} data frame, to be used
+#'        as source for metadata.
+#' @param command Either \dQuote{add} (default), \dQuote{delete}, or
+#'        \dQuote{"change"}.
+#'        
+#' @seealso mdTableToControl
+#' 
+#' @export mdKeyToControl
+#' 
+#' @examples 
+#' mdKeyToControl( data.frame(numbers=1:3, booleans=c(T, T, F), Description=c("a", "b", "c"))
+#'               , "numbers"
+#'               , "delete")
 
-tagMetaTable <- function(Key, Samples)
+mdKeyToControl <- function(Samples, Key, command=c("add", "delete", "change")) {
+  if (! Key %in% colnames(Samples))
+    stop(paste0("Samples data frame misses '", Key, "' column."))
+  if (! "Description" %in% colnames(Samples))
+    stop("Samples data frame misses 'Description' column.")
+  if(missing(command)) {
+    warning ("Using 'add' as default command.  Set 'command' to suppress this message.")
+    command <- "add"
+  }
   data.frame(
-    filter  = sampleDescription(Samples$Rownames)
-    , command = "add"
+      filter  = Samples[["Description"]]
+    , command = command
     , key     = Key
     , value   = Samples[[Key]] %>% as.character
     , stringsAsFactors = FALSE
   )
+}
 
-#' mkMetaTable
+#' mdTableToControl
 #' 
+#' Function to create a metadata control file for \code{zenbu_upload}.
+#' 
+#' @param Samples A data frame describing the samples, in which the column
+#'        \dQuote{Description} exists.
+#' 
+#' @param Keys Colum names in the \dQuote{Samples} data frame.
+#' 
+#' @param command Either \dQuote{add} (default), \dQuote{delete}, or
+#'        \dQuote{"change"}.
+#'        
+#' @seealso mdKeyToControl
+#'        
+#' @examples 
+#' mdTableToControl( data.frame(numbers=1:3, booleans=c(T, T, F), Description=c("a", "b", "c"))
+#'                 , c("numbers", "booleans"))
+#' 
+#' @export mdTableToControl
 
-mkMetaTable <- function(Keys) {
-  if (! all( Keys %in% colnames(samples)))
-    stop("Some keys are not in the samples table")
+mdTableToControl <- function(Samples, Keys, command=c("add", "delete", "change")) {
+  if(missing(command)) {
+    warning ("Using 'add' as default command.  Set 'command' to suppress this message.")
+    command <- "add"
+  }
   Reduce(
-    function(DF, Key) rbind(DF, tagMetaTable(Key))
+    function(DF, Key) rbind(DF, mdKeyToControl(Samples, Key, command))
     , Keys
     , data.frame() )
 }
